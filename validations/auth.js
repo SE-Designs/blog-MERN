@@ -10,3 +10,10 @@ export const registerValidation = [
 	}),
 	body("avatarUrl", "Неверный формат ссылки").optional().isURL(),
 ];
+
+export const loginValidation = [
+	body("email", "Неверный формат почты").isEmail(),
+	body("password", "Пароль должен состоять минимум из 5 символов").isLength({
+		min: 5,
+	}),
+];
