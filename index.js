@@ -1,11 +1,10 @@
 import * as dotenv from "dotenv";
 
 import { PostController, UserController } from "./controllers/index.js";
+import { checkAuth, handleValErrors } from "./utils/index.js";
 import { loginValidation, registerValidation } from "./validations/auth.js";
 
-import checkAuth from "./utils/checkAuth.js";
 import express from "express";
-import handleValErrors from "./utils/handleValErrors.js";
 import mongoose from "mongoose";
 import multer from "multer";
 import { postCreateValidation } from "./validations/post.js";
@@ -23,7 +22,7 @@ const app = express();
 
 const storage = multer.diskStorage({
 	destination: (_, __, cb) => {
-		cb(null, "images");
+		cb(null, "uploads");
 	},
 	filename: (_, file, cb) => {
 		cb(null, file.originalname);
